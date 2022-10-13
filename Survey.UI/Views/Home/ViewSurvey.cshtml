@@ -1,0 +1,85 @@
+﻿@model Survey.UI.Models.SurveyViewModel
+@{
+    ViewData["Title"] = "ViewSurvey";
+}
+
+<h1>@Model.Name</h1>
+<p>@Model.Description</p>
+
+@using (Html.BeginForm("SubmitSurvey", "Home", FormMethod.Post))
+{
+    @Html.HiddenFor(a=>a.Id) //Survey Id
+
+    @for (var intSec = 0; intSec < Model.Sections.Count; intSec++) //sections
+    {
+        <h2 style="text-align:center;">
+            @Model.Sections[intSec].Name
+        </h2>
+
+        @Html.HiddenFor(a=> a.Sections[intSec].Id) //Section Id
+
+        @for (var intQues = 0; intQues < Model.Sections[intSec].SectionQuestions.Count; intQues++)
+        {
+            @Html.HiddenFor(a=> a.Sections[intSec].SectionQuestions[intQues].Id) //Section Question Id
+            @Html.HiddenFor(a=> a.Sections[intSec].SectionQuestions[intQues].Question) //Question
+            @Html.HiddenFor(a=> a.Sections[intSec].SectionQuestions[intQues].QuestionTypeId) //Question Type Id
+            <p>
+                @Model.Sections[intSec].SectionQuestions[intQues].Question
+                <div>
+
+                    @{
+                        var lstItems = Model.Sections[intSec].SectionQuestions[intQues].GetAnswerValuesForControl();
+                    }
+
+                    @switch (Model.Sections[intSec].SectionQuestions[intQues].QuestionTypeId)
+                    {
+                        case Survey.BL.EFCoreModels.QuestionTypeEnum.Choice:
+
+                            foreach (var item in lstItems)
+                            {
+                                <span>@item.Text</span> @Html.RadioButtonFor(a => a.Sections[intSec].SectionQuestions[intQues].Answer, @item.Text)
+                                <br />
+                            }
+
+                            break;
+                        case Survey.BL.EFCoreModels.QuestionTypeEnum.TextSingleLine:
+                            @Html.TextBoxFor(a=> a.Sections[intSec].SectionQuestions[intQues].Answer)
+                            break;
+                        case Survey.BL.EFCoreModels.QuestionTypeEnum.TextMultiLine:
+                            @Html.TextAreaFor(a=> a.Sections[intSec].SectionQuestions[intQues].Answer)
+                            break;
+                        case Survey.BL.EFCoreModels.QuestionTypeEnum.DropDown:
+                            @Html.DropDownListFor(a=> a.Sections[intSec].SectionQuestions[intQues].Answer,lstItems)
+                            break;
+                        case Survey.BL.EFCoreModels.QuestionTypeEnum.Checkbox:
+                            foreach (var item in lstItems)
+                            {
+                                @* <input id="@Html.IdFor(a=>a.Sections[intSec].SectionQuestions[intQues].Answer)"
+        name="@Html.NameFor(a=>a.Sections[intSec].SectionQuestions[intQues].Answer)"
+        type="checkbox"
+        value="@item.Value"
+        checked="@item.Selected" />
+        @item.Text
+        <br />*@
+
+                                <input id="@Html.IdFor(a=>a.Sections[intSec].SectionQuestions[intQues].AnswerList)"
+               name="@Html.NameFor(a=>a.Sections[intSec].SectionQuestions[intQues].AnswerList)"
+               type="checkbox"
+               value="@item.Value" />
+                                @item.Text
+                                <br />
+                            }
+
+                            break;
+
+                        default:
+                            break;
+                    }
+                </div>
+                <hr />
+            </p>
+        }
+    }
+
+    <input id="Submit" type="submit" value="submit" />
+}

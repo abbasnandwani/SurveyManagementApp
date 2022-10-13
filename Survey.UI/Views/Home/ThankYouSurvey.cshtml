@@ -1,0 +1,16 @@
+﻿@model Survey.UI.Models.SurveyViewModel
+@{
+    ViewData["Title"] = "ViewSurvey";
+}
+
+<h1>@Model.Name</h1>
+
+
+@using (Html.BeginForm("SubmitSurvey", "Home", FormMethod.Post))
+{
+    @Html.HiddenFor(a=>a.Id)
+
+  <p>Thank you for submitting survey.</p>
+
+    
+}

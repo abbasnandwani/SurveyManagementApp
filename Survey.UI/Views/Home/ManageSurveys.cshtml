@@ -1,0 +1,48 @@
+﻿@model Survey.UI.Models.SurveyManageViewModel
+@{
+    ViewData["Title"] = "Manage Surveys";
+}
+
+<form enctype="multipart/form-data" method="post" asp-controller="Home" asp-action="SurveyUpload">
+    <div id="uploadsurveyform">
+        <b><a href="#">Upload Survey</a></b>
+        <div id="uploadbox" style="border:1px solid black;width:500px;display:none;">
+            <b>Survey excel file:</b> <input asp-for="FileUpload" type="file"><input type="submit" value="Upload" />
+            <span asp-validation-for="FileUpload"></span>
+        </div>
+    </div>
+</form>
+<br />
+<br />
+<table cellpadding="2" cellspacing="2">
+    <tr>
+        <td><b>Survey Id</b></td>
+        <td><b>Name</b></td>
+        <td><b>&nbsp;</b></td>
+    </tr>
+
+    @foreach (var survey in Model.Surveys)
+    {
+        <tr>
+            <td>@survey.Id</td>
+            <td>@survey.Name</td>
+            <td>
+                <a asp-area="" asp-controller="Home" asp-action="ViewSurvey" asp-route-id="@survey.Id" target="_blank">View Survey</a>
+                |
+                <a asp-area="" asp-controller="Home" asp-action="DownloadSurvey" asp-route-id="@survey.Id" target="_blank">Download Survey</a>
+
+            </td>
+
+        </tr>
+    }
+</table>
+
+    @section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#uploadsurveyform').click(function () {
+                $('#uploadbox').toggle("slide");
+            });
+        });
+    </script>
+    }

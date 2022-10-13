@@ -1,0 +1,4 @@
+﻿Scaffold-DbContext -Force -Context "SurveyDbContext" "Data Source=localhost;Initial Catalog=SurveyDb;Integrated Security=True" Microsoft.EntityFrameworkCore.SqlServer -OutputDir EFCoreModels
+
+
+Scaffold-DbContext -Force -Context "SurveyDbContext2" "Data Source=localhost;Initial Catalog=SurveyDb;Integrated Security=True" Microsoft.EntityFrameworkCore.SqlServer -OutputDir EFCoreModels2
