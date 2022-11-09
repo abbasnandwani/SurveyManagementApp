@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 /Survey.UI/appsettings - Copy.json
 /Survey.ConsoleTest/appsettings - Copy.json
+/Survey.UI/appsettings - Copy.Development.json
