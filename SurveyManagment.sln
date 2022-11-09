@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Survey.UI", "Survey.UI\Surv
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Survey.BL", "Survey.BL\Survey.BL.csproj", "{D91A9116-067C-4D80-BC25-96020B5EAB45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Survey.ConsoleTest", "Survey.ConsoleTest\Survey.ConsoleTest.csproj", "{92DC7CA8-E4CD-4246-974E-3EF58CDB1E0A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Survey.ConsoleTest", "Survey.ConsoleTest\Survey.ConsoleTest.csproj", "{92DC7CA8-E4CD-4246-974E-3EF58CDB1E0A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

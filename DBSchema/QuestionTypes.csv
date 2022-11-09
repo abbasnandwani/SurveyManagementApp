@@ -1,0 +1,6 @@
+﻿Id,TypeName
+1,TextSingleLine
+2,TextMultiLine
+3,Choice
+4,DropDown
+5,Checkbox
